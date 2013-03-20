@@ -13,7 +13,10 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    controllers: ["HanJa"],
+    controllers: [
+        'HanJa',
+        'MainList'
+    ],
 
     models: [
         'BulkModel'
@@ -25,7 +28,7 @@ Ext.application({
 
     views: [
         'Main',
-        'MainList'
+        'VerticalCarousel'
     ],
 
     icon: {
@@ -46,7 +49,7 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
-    fileName: 'grade_7_1.json',
+    fileName: 'grade_6_1.json',
 
     characterBulk: 50,
 

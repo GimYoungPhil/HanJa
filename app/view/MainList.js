@@ -2,24 +2,17 @@ Ext.define('HanJa.view.MainList', {
     extend: 'Ext.List',
     xtype: 'mainList',
     config: {
-        fullscreen: true,
-        itemTpl: '<div class="contact">{index} <strong>{description}</strong></div>',
-
-        // store: 'BulkStore',
-        // fields: ['index', 'description'],
-        data : [
-            {index: "Ed",    description: "Spencer"},
-            {index: "Tommy", description: "Maintz"},
-            {index: "Aaron", description: "Conran"},
-            {index: "Jamie", description: "Avins"}
-        ],
-
-        items: [
+        cls: 'hanList',
+        store: 'BulkStore',
+        itemTpl: Ext.create('Ext.XTemplate',
+            '<span>{index}</span>',
+            '<span>{[this.hanja(values.data)]}</span>',
+            '<span>{description}</span>',
             {
-                xtype: 'titlebar',
-                title: 'hey',
-                docked: 'top'
+                hanja: function(data){
+                    return data[0].character;
+                }
             }
-        ]
+        )
     }
 });

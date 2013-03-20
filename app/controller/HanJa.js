@@ -26,8 +26,8 @@ Ext.define('HanJa.controller.HanJa', {
 
         this.getMainTitle().setTitle(this.jsonObject.description);
         // Ext.getStore('BulkStore').setData(this.sliceArray());
-        console.log(Ext.getStore('BulkStore'));
-
+        // console.log(Ext.getStore('BulkStore'));
+        Ext.getStore('BulkStore').setData(this.sliceArray());
     },
 
     loadJsonFile: function(fileName) {
@@ -44,11 +44,11 @@ Ext.define('HanJa.controller.HanJa', {
         var origin = this.jsonObject.hanjaList;
         var bulk = this.characterBulk;
         // var fragment;
-        for(var i=0, j=1; length > i; i=bulk*j+1, j++){
+        for(var i=0, j=1; length > i; i=bulk*j, j++){
             var fragment = Ext.Array.slice(origin, i, bulk * j);
             var obj = {
                 "index": j,
-                "description": j+"~"+(bulk*j),
+                "description": (i+1)+"~"+( length > bulk*j ? bulk*j : length ),
                 "data":fragment
             };
             array.push(obj);
@@ -84,7 +84,7 @@ Ext.define('HanJa.controller.HanJa', {
                 {
                     html: '<div class="left_Page">' + hanjaList[i]['character'] + '</div>',
                     styleHtmlContent: true,
-                    style: 'background-color: #585344'
+                    style: 'background-color: #9dadaa'
                 },{
                     html: '<div class="right_Page">' + self.sliceMeanTones(hanjaList[i]['meanTones']) + '</div>',
                     styleHtmlContent: true,

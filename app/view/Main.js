@@ -6,14 +6,12 @@ Ext.define('HanJa.view.Main', {
         'HanJa.view.MainList'
     ],
     config: {
-
-        layout: 'fit',
+        layout: 'card',
 
         items: [
             {
                 xtype: 'titlebar',
-                docked: 'top',
-                title: ''
+                docked: 'top'
             },
             {
                 xtype: 'mainList'

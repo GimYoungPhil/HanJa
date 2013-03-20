@@ -48,6 +48,51 @@
                 opacity: 0.8
             }
         }
+
+        @font-face{
+            font-family:"family:NanumPen";
+            src:local('./font/family:NanumPen.woff'), url('./font/family:NanumPen.woff') format('woff')
+        }
+
+        body{font-family:family:NanumPen;}
+
+        div{font-family:family:NanumPen;}
+
+        span{font-family:family:NanumPen;}
+
+        .left_Page {
+            font-size: 18em;
+            color: #3a4547;
+            line-height: 100%;
+        }
+
+        .right_Page {
+            font-size: 4em;
+            color: #ffffff;
+            line-height: 100%;
+        }
+
+        .right_Page .meanTones {
+            float: left;
+            margin: 3px;
+        }
+
+        .meanTones span { 
+            display: block;
+            min-height: 30px;
+        }  
+
+        .meanTones:nth-child(1) {
+            background:#5C981B;
+        }
+
+        .meanTones:nth-child(2) {
+            background:#6Ca82B;
+        }
+
+        .meanTones:nth-child(3) {
+            background:#7Cb83B;
+        } 
     </style>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
