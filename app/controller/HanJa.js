@@ -1,35 +1,59 @@
-Ext.define('HanJa.controller.HanJaController', {
+Ext.define('HanJa.controller.HanJa', {
     extend: 'Ext.app.Controller',
     
     config: {
         refs: {
-            
+            main: 'main',
+            mainTitle: 'main titlebar',
+            mainList: 'mainList'
         },
         control: {
             
         }
     },
     
+    jsonObject: null,
+    characterBulk: 50,
+
     //called when the Application is launched, remove if not needed
     launch: function(app) {
-        console.log(this.json);
-        console.log(this.number);
+        this.create(app.fileName, app.characterBulk);
     },
 
-    json: undefined,
-    number: undefined,
+    create: function(fileName, characterBulk) {
+        this.jsonObject = this.loadJsonFile(fileName);
+        this.characterBulk = characterBulk;
 
-    create: function(json, number) {
-        this.json = json;
-        this.number = number;
+        this.getMainTitle().setTitle(this.jsonObject.description);
+        // Ext.getStore('BulkStore').setData(this.sliceArray());
+        console.log(Ext.getStore('BulkStore'));
+
     },
 
     loadJsonFile: function(fileName) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', fileName, false);
         xhr.send(null);
-        var result = eval("(" + xhr.responseText + ")");
-        return result;
+        var obj = eval("(" + xhr.responseText + ")");
+        return obj;
+    },
+
+    sliceArray: function() {
+        var array = [];
+        var length = this.jsonObject.hanjaCount;
+        var origin = this.jsonObject.hanjaList;
+        var bulk = this.characterBulk;
+        // var fragment;
+        for(var i=0, j=1; length > i; i=bulk*j+1, j++){
+            var fragment = Ext.Array.slice(origin, i, bulk * j);
+            var obj = {
+                "index": j,
+                "description": j+"~"+(bulk*j),
+                "data":fragment
+            };
+            array.push(obj);
+        }
+        return array;        
     },
 
     insertSpanTag:function(str){

@@ -6,7 +6,6 @@ Ext.Loader.setPath({
 //</debug>
 
 Ext.application({
-    controllers: ["HanJaController"],
 
     name: 'HanJa',
 
@@ -14,7 +13,20 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    views: ['Main'],
+    controllers: ["HanJa"],
+
+    models: [
+        'BulkModel'
+    ],
+
+    stores: [
+        'BulkStore'
+    ],
+
+    views: [
+        'Main',
+        'MainList'
+    ],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -34,17 +46,21 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
+    fileName: 'grade_7_1.json',
+
+    characterBulk: 50,
+
     launch: function() {
+
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
         Ext.Viewport.add(Ext.create('HanJa.view.Main'));
 
-        // set controller call launch
-        // util.create('8.json', 50);
-        var hjc = HanJa.app.getController('HanJaController');
-        hjc.create('8.json', 50);
+        // setTimeout(function(){
+        //     window.loadingDialog.close();
+        // }, 2000);
     },
 
     onUpdated: function() {

@@ -2,18 +2,21 @@ Ext.define('HanJa.view.Main', {
     extend: 'Ext.Container',
     xtype: 'main',
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar',
+        'HanJa.view.MainList'
     ],
     config: {
+
+        layout: 'fit',
 
         items: [
             {
                 xtype: 'titlebar',
                 docked: 'top',
-                title: '급 한자'
+                title: ''
             },
             {
-                xtype: 'list'
+                xtype: 'mainList'
             }
         ]
     }
