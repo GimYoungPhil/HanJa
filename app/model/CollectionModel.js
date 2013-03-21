@@ -1,4 +1,4 @@
-Ext.define('HanJa.model.BulkModel', {
+Ext.define('HanJa.model.CollectionModel', {
 	extend: 'Ext.data.Model',
 
 	config: {
@@ -6,7 +6,7 @@ Ext.define('HanJa.model.BulkModel', {
 		fields: [
 			{ name: 'index', type: 'int'},
 			{ name: 'description', type: 'string'},
-			{ name: 'data'}
+			{ name: 'collection'}
 		]
 	}
 });

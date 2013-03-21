@@ -13,21 +13,19 @@ Ext.define('HanJa.controller.HanJa', {
     },
     
     jsonObject: null,
-    characterBulk: 50,
+    collectionLength: 50,
 
     //called when the Application is launched, remove if not needed
     launch: function(app) {
-        this.create(app.fileName, app.characterBulk);
+        this.create(app.fileName, app.collectionLength);
     },
 
-    create: function(fileName, characterBulk) {
+    create: function(fileName, collectionLength) {
         this.jsonObject = this.loadJsonFile(fileName);
-        this.characterBulk = characterBulk;
+        this.collectionLength = collectionLength;
 
         this.getMainTitle().setTitle(this.jsonObject.description);
-        // Ext.getStore('BulkStore').setData(this.sliceArray());
-        // console.log(Ext.getStore('BulkStore'));
-        Ext.getStore('BulkStore').setData(this.sliceArray());
+        Ext.getStore('CollectionStore').setData(this.sliceArray());
     },
 
     loadJsonFile: function(fileName) {
@@ -40,16 +38,16 @@ Ext.define('HanJa.controller.HanJa', {
 
     sliceArray: function() {
         var array = [];
-        var length = this.jsonObject.hanjaCount;
+        var count = this.jsonObject.hanjaCount;
         var origin = this.jsonObject.hanjaList;
-        var bulk = this.characterBulk;
+        var length = this.collectionLength;
         // var fragment;
-        for(var i=0, j=1; length > i; i=bulk*j, j++){
-            var fragment = Ext.Array.slice(origin, i, bulk * j);
+        for(var i=0, j=1; count > i; i=length*j, j++){
+            var fragment = Ext.Array.slice(origin, i, length * j);
             var obj = {
                 "index": j,
-                "description": (i+1)+"~"+( length > bulk*j ? bulk*j : length ),
-                "data":fragment
+                "description": (i + 1) + "~" + ( count > (length * j) ? (length * j) : count ),
+                "collection":fragment
             };
             array.push(obj);
         }
@@ -84,11 +82,13 @@ Ext.define('HanJa.controller.HanJa', {
                 {
                     html: '<div class="left_Page">' + hanjaList[i]['character'] + '</div>',
                     styleHtmlContent: true,
-                    style: 'background-color: #9dadaa'
+                    style: 'background-color: #9dadaa',
+                    autoDestroy: true
                 },{
                     html: '<div class="right_Page">' + self.sliceMeanTones(hanjaList[i]['meanTones']) + '</div>',
                     styleHtmlContent: true,
-                    style: 'background-color: #8CC84B'
+                    style: 'background-color: #8CC84B',
+                    autoDestroy: true
                 }]
             });
         }

@@ -3,7 +3,7 @@ Ext.define('HanJa.view.Main', {
     xtype: 'main',
     requires: [
         'Ext.TitleBar',
-        'HanJa.view.MainList'
+        'HanJa.view.CollectionList'
     ],
     config: {
         layout: 'card',
@@ -11,10 +11,19 @@ Ext.define('HanJa.view.Main', {
         items: [
             {
                 xtype: 'titlebar',
-                docked: 'top'
+                docked: 'top',
+                items: [
+                    {
+                        xtype: 'button',
+                        ui: 'plain',
+                        iconCls: 'reply',
+                        iconMask: true,
+                        hidden: true
+                    }
+                ]
             },
             {
-                xtype: 'mainList'
+                xtype: 'collectionList'
             }
         ]
     }

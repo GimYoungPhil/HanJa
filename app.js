@@ -15,15 +15,15 @@ Ext.application({
 
     controllers: [
         'HanJa',
-        'MainList'
+        'CollectionList'
     ],
 
     models: [
-        'BulkModel'
+        'CollectionModel'
     ],
 
     stores: [
-        'BulkStore'
+        'CollectionStore'
     ],
 
     views: [
@@ -51,12 +51,9 @@ Ext.application({
 
     fileName: 'grade_6_1.json',
 
-    characterBulk: 50,
+    collectionLength: 50,
 
     launch: function() {
-
-        // Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
         Ext.Viewport.add(Ext.create('HanJa.view.Main'));
@@ -66,15 +63,15 @@ Ext.application({
         // }, 2000);
     },
 
-    onUpdated: function() {
-        Ext.Msg.confirm(
-            "Application Update",
-            "This application has just successfully been updated to the latest version. Reload now?",
-            function(buttonId) {
-                if (buttonId === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
-    }
+    // onUpdated: function() {
+    //     Ext.Msg.confirm(
+    //         "Application Update",
+    //         "This application has just successfully been updated to the latest version. Reload now?",
+    //         function(buttonId) {
+    //             if (buttonId === 'yes') {
+    //                 window.location.reload();
+    //             }
+    //         }
+    //     );
+    // }
 });
