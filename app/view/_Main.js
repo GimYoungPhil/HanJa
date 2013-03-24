@@ -7,6 +7,7 @@ Ext.define('HanJa.view.Main', {
     ],
     config: {
         layout: 'card',
+        autoDestory: true,
 
         items: [
             {

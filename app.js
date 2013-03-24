@@ -9,13 +9,9 @@ Ext.application({
 
     name: 'HanJa',
 
-    requires: [
-        'Ext.MessageBox'
-    ],
-
     controllers: [
-        'HanJa',
-        'CollectionList'
+        'CollectionList',
+        'MainContainer'
     ],
 
     models: [
@@ -27,8 +23,9 @@ Ext.application({
     ],
 
     views: [
-        'Main',
-        'VerticalCarousel'
+        'CollectionList',
+        'MainContainer',
+        'OverlayContainer'
     ],
 
     icon: {
@@ -49,29 +46,20 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
-    fileName: 'grade_6_1.json',
+    fileName: 'test_6_1.json',
 
-    collectionLength: 50,
+    collectionLength: 20,
+
+    overlayMenu: null,
 
     launch: function() {
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('HanJa.view.Main'));
+        Ext.Viewport.add(Ext.create('HanJa.view.MainContainer'));
+        this.overlayMenu = Ext.Viewport.add(Ext.create('HanJa.view.OverlayContainer'));
 
         // setTimeout(function(){
         //     window.loadingDialog.close();
         // }, 2000);
-    },
-
-    // onUpdated: function() {
-    //     Ext.Msg.confirm(
-    //         "Application Update",
-    //         "This application has just successfully been updated to the latest version. Reload now?",
-    //         function(buttonId) {
-    //             if (buttonId === 'yes') {
-    //                 window.location.reload();
-    //             }
-    //         }
-    //     );
-    // }
+    }
 });

@@ -3,9 +3,7 @@ Ext.define('HanJa.controller.HanJa', {
     
     config: {
         refs: {
-            main: 'main',
-            mainTitle: 'main titlebar',
-            mainList: 'mainList'
+            mainTitle: 'main titlebar'
         },
         control: {
             

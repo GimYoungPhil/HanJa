@@ -1,10 +1,9 @@
 Ext.define('HanJa.controller.CollectionList', {
     extend: 'Ext.app.Controller',
-
-    requries: [
-        'HanJa.view.VerticalCarousel'
+    requires: [
+        // 'HanJa.view.VerticalCarousel'
     ],
-    
+
     config: {
         refs: {
             main: 'main',
@@ -15,31 +14,22 @@ Ext.define('HanJa.controller.CollectionList', {
         control: {
             collectionList: {
                 itemtap: 'tapCollectionList'
-            },
-            backButton: {
-                tap: 'tapBackButton'
             }
         }
     },
 
     // itemtap( this, index, target, record, e, eOpts )
     tapCollectionList: function(list, index, target, record) {
+        if(list){
+            console.log(list);
+            console.log(index);
+            console.log(target);
+            console.log(record);
+        }
+        var mc = HanJa.app.getController('MainContainer');
+        mc.createVertical(index);
 
-        var hj = HanJa.app.getController('HanJa');
-        var items = hj.createCarousels(record.data.collection)
-        var main = this.getMain();
-        main.setActiveItem(
-            {
-                xtype:'verticalCarousel', 
-                items:items
-            }
-        );
-        this.getBackButton().show();
-    },
-
-    tapBackButton: function() {
-        this.getBackButton().hide();
-        var main = this.getMain();
-        main.setActiveItem(0);
+        var overlayMenu = HanJa.app.overlayMenu;
+        overlayMenu.hide();
     }
 });
